@@ -37,7 +37,7 @@ class App extends Component {
             ...this.state.persons[personIndex]
         }; // This is used to find the object and make a copy of it.
 
-        person.name = event.target.name; // Change the name
+        person.name = event.target.value; // Change the name
 
         const persons = [...this.state.persons]; // Again making a copy first..
         persons[personIndex] = person;
