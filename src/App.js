@@ -14,7 +14,8 @@ class App extends Component {
             {
                 id: 3, name: "Nipun", age: 28
             }
-        ]
+        ],
+        showPersons: false
     }
 
     togglePersonHandler = () => {
@@ -23,10 +24,31 @@ class App extends Component {
         this.setState({ showPersons: !doesShow })
     }
 
+    nameChangedHandler = (event, id) => {
+        // Don't use this. Changing the state directly
+        // this.state.persons[0].name = "Mohit Jain"
+
+
+        const personIndex = this.state.persons.findIndex(p => {
+            return p.id === id;
+        });
+
+        const person = {
+            ...this.state.persons[personIndex]
+        }; // This is used to find the object and make a copy of it.
+
+        person.name = event.target.name; // Change the name
+
+        const persons = [...this.state.persons]; // Again making a copy first..
+        persons[personIndex] = person;
+
+        this.setState({ persons: persons });
+    }
+
     deletePersonHandler = (personIndex) => {
         const persons = [...this.state.persons]; // This makes a copy. const persons = this.state.persons leads to a pointer.
         persons.splice(personIndex, 1);
-        this.setState({persons: persons});
+        this.setState({ persons: persons });
     }
 
     render() {
@@ -48,6 +70,7 @@ class App extends Component {
                             name={person.name}
                             age={person.age}
                             key={person.id}
+                            changed={(event) => this.nameChangedHandler(event, person.id)}
                         />
                     })}
                 </div>
