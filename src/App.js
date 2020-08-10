@@ -31,8 +31,17 @@ class App extends Component {
                 {
                     name: "Nipun", age: 29
                 }
-            ] })
+            ],
+            showPersons: true
+        })
     }
+
+    togglePersonHandler = () => {
+        const doesShow = this.state.showPersons;
+
+        this.setState({ showPersons: !doesShow })
+    }
+
 
     nameChangedHandler = (event) => {
         // Don't use this. Changing the state directly
@@ -59,24 +68,33 @@ class App extends Component {
             padding: '8px',
             cursor: 'pointer'
         }
+
+        let persons = null;
+        if(this.state.showPersons){
+            persons = (
+                <div>
+                    <Person
+                        click={this.switchNameHandler}
+                        name={this.state.persons[0].name}
+                        age={this.state.persons[0].age}/>
+                    <Person
+                        click={this.switchNameHandler}
+                        changed={this.nameChangedHandler}
+                        name={this.state.persons[1].name}
+                        age={this.state.persons[1].age}> My hobbies: Running</Person>
+                    <Person
+                        click={this.switchNameHandler}
+                        name={this.state.persons[2].name}
+                        age={this.state.persons[2].age}/>
+                </div>
+            )
+        }
         return (
             <div className="App">
                 <h1>Hi I am a React App.</h1>
                 <p>This is working.</p>
-                <button style={style} onClick={this.switchNameHandler}>Switch Name</button>
-                <Person
-                    click={this.switchNameHandler}
-                    name={ this.state.persons[0].name }
-                    age={ this.state.persons[0].age }/>
-                <Person
-                    click={this.switchNameHandler}
-                    changed={this.nameChangedHandler}
-                    name={ this.state.persons[1].name }
-                    age={ this.state.persons[1].age }> My hobbies: Running</Person>
-                <Person
-                    click={this.switchNameHandler}
-                    name={ this.state.persons[2].name }
-                    age={ this.state.persons[2].age }/>
+                <button style={style} onClick={this.togglePersonHandler}>Toggle Persons</button>
+                {persons}
             </div>
         );
         // return React.createElement('div', { className: 'App' }, 'I am a react app');
