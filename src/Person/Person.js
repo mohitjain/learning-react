@@ -10,6 +10,12 @@ const person = (props) => {
         }
     }
 
+    const  random = Math.random();
+
+    // if(random < .1){
+    //     throw new Error("30% chance of crashing the app. Lets try to handle it.");
+    // }
+
     return (
         <div className='Person' style={style}>
             <p onClick={props.click}>I am a {props.name} and I am {props.age} years old.</p>
