@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
-import Person from '../components/Persons/Person/Person';
+import Persons from '../components/Persons/Persons';
 import Radium, { StyleRoot } from 'radium';
-import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
     state = {
@@ -54,57 +54,29 @@ class App extends Component {
     }
 
     render() {
-        const style = {
-            backgroundColor: 'green',
-            font: 'inherit',
-            border: '1px solid blue',
-            padding: '8px',
-            cursor: 'pointer',
-            ":hover": {
-                backgroundColor: 'lightgreen',
-                color: 'black'
-            }
-        }
-
         let persons = null;
         if(this.state.showPersons){
             persons = (
                 <div>
-                    {this.state.persons.map((person, index) => {
-                        return <ErrorBoundary key={person.id}>
-                            <Person
-                                click={() => this.deletePersonHandler(index)}
-                                name={person.name}
-                                age={person.age}
-                                changed={(event) => this.nameChangedHandler(event, person.id)}
-                            />
-                        </ErrorBoundary>
-                    })}
+                    <Persons
+                        persons={ this.state.persons }
+                        clicked={ this.deletePersonHandler }
+                        changed={ this.nameChangedHandler }
+                    />
+
                 </div>
             )
-            style.backgroundColor = "Red";
-            style[":hover"] = {
-                backgroundColor: 'salmon',
-                    color: 'black'
-            }
         }
 
-        const classes = [];
-
-        if(this.state.persons.length <= 2){
-            classes.push('red');
-        }
-
-        if(this.state.persons.length <= 1){
-            classes.push('bold');
-        }
 
         return (
             <StyleRoot>
             <div className="App">
-                <h1>Hi I am a React App.</h1>
-                <p className={classes.join(" ")}>This is really working.</p>
-                <button style={style} onClick={this.togglePersonHandler}>Toggle Persons</button>
+                <Cockpit
+                    persons={this.state.persons}
+                    clicked={this.togglePersonHandler}
+                    showPersons={this.state.showPersons}
+                />
                 {persons}
             </div>
             </StyleRoot>
