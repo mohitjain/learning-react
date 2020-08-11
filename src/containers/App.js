@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
-import Person from './Person/Person';
+import Person from '../components/Persons/Person/Person';
 import Radium, { StyleRoot } from 'radium';
-import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 class App extends Component {
     state = {
@@ -28,7 +28,7 @@ class App extends Component {
 
     nameChangedHandler = (event, id) => {
         // Don't use this. Changing the state directly
-        // this.state.persons[0].name = "Mohit Jain"
+        // this.state.Persons[0].name = "Mohit Jain"
 
 
         const personIndex = this.state.persons.findIndex(p => {
@@ -48,7 +48,7 @@ class App extends Component {
     }
 
     deletePersonHandler = (personIndex) => {
-        const persons = [...this.state.persons]; // This makes a copy. const persons = this.state.persons leads to a pointer.
+        const persons = [...this.state.persons]; // This makes a copy. const Persons = this.state.Persons leads to a pointer.
         persons.splice(personIndex, 1);
         this.setState({ persons: persons });
     }
