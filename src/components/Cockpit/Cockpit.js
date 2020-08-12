@@ -6,7 +6,7 @@ const Cockpit = ( props ) => {
         console.log("Runs on Every render cycle, [Cockpit] UseEffect, After adding props.persons, now it runns only when persons changes.");
         // Use multiple useEffect for multiple handlings..
         // Http request...
-        
+
     }, [props.persons]);
 
     useEffect(() => {
