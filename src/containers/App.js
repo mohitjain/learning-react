@@ -5,6 +5,14 @@ import Radium, { StyleRoot } from 'radium';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
+
+    constructor(props) {
+        super(props);
+        console.log("[Apps.js] Constuctor");
+
+        // this.state = ''; Can be set here.
+    }
+
     state = {
         persons: [
             {
@@ -18,6 +26,19 @@ class App extends Component {
             }
         ],
         showPersons: false
+    }
+
+    static getDerivedStateFromProps(props, state){
+        console.log("[Apps.js] getDerivedStateFromProps");
+        return state; // Return updated here
+    }
+
+    componentDidMount() {
+        console.log("[Apps.js] componentDidMount");
+    }
+
+    componentWillMount() {
+        console.log("[Apps.js] componentWillMount()");
     }
 
     togglePersonHandler = () => {
@@ -54,6 +75,7 @@ class App extends Component {
     }
 
     render() {
+        console.log("[Apps.js] Render");
         let persons = null;
         if(this.state.showPersons){
             persons = (
