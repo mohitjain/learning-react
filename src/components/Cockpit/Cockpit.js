@@ -32,11 +32,11 @@ const Cockpit = ( props ) => {
 
     const assignedClasses = [];
 
-    if(props.persons.length <= 2){
+    if(props.personsLength <= 2){
         assignedClasses.push('red');
     }
 
-    if(props.persons.length <= 1){
+    if(props.personsLength <= 1){
         assignedClasses.push('bold');
     }
 
@@ -47,7 +47,7 @@ const Cockpit = ( props ) => {
             color: 'black'
         }
     }
-
+    console.log("[Cockpit.js] Rendering..")
     return (
         <div>
             <h1>Hi I am a React App.</h1>
@@ -58,4 +58,4 @@ const Cockpit = ( props ) => {
     );
 }
 
-export default Radium(Cockpit);
+export default React.memo(Radium(Cockpit));
