@@ -1,9 +1,23 @@
-import React from "react";
-import classes from './Cockpit.css';
-import Persons from "../Persons/Persons";
+import React, { useEffect } from "react";
 import Radium from "radium";
 
-const cockpit = ( props ) => {
+const Cockpit = ( props ) => {
+    useEffect(() => {
+        console.log("Runs on Every render cycle, [Cockpit] UseEffect, After adding props.persons, now it runns only when persons changes.");
+        // Use multiple useEffect for multiple handlings..
+        // Http request...
+        
+    }, [props.persons]);
+
+    useEffect(() => {
+        console.log("Run Only Once on first render, [Cockpit] UseEffect");
+        // Use multiple useEffect for multiple handlings..
+        // Http request...
+        return () => {
+            console.log("[Cockpit.js] Cleanup work in UseEffect.");
+        };
+    }, []);
+
     const style = {
         backgroundColor: 'green',
         font: 'inherit',
@@ -44,4 +58,4 @@ const cockpit = ( props ) => {
     );
 }
 
-export default Radium(cockpit);
+export default Radium(Cockpit);
